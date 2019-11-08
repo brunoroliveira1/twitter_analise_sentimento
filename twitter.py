@@ -4,6 +4,7 @@ app = Flask(__name__)
 app.secret_key = 'icc'
 
 
+
 class Busca:
     def __init__(self, busca):
         self.busca = busca
