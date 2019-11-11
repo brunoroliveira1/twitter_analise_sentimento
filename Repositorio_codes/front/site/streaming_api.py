@@ -64,16 +64,5 @@ class luisa(StreamListener):
             stream.disconnect()
 
     def on_error(self, status):
-#        print(status)
+        print(status)
 
-
-
-
-# Fazendo a autenticação no Twitter e criando a conexão com o Twitter Streaming API
-
-#l = luisa(n_tweets,tracklist)
-#luisa.limpa_arq()
-#auth = OAuthHandler(twitter_keys.CONSUMER_KEY, twitter_keys.CONSUMER_SECRET)
-#auth.set_access_token(twitter_keys.ACCESS_TOKEN, twitter_keys.ACCESS_TOKEN_SECRET)
-#stream = Stream(auth, l)
-#stream.filter(track=tracklist, languages=["en"])
