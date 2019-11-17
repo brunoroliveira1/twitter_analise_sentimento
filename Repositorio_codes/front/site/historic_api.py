@@ -27,7 +27,7 @@ class historico(object):
 #        subject_list = ['Trump', 'Obama']
 #        n_tweets = 10
         
-        with open('subject_list.json', 'w') as tl:
+        with open('subject_list.json', 'w',encoding="utf-8") as tl:
             tl.write(str(self.subject_list))
         
         for tweet in tweepy.Cursor(api.search, q=self.subject_list, count=2,
@@ -36,7 +36,7 @@ class historico(object):
             csvWriter.writerow([tweet.created_at, tweet.text])
 
 
-subject_list = ['Trump', 'Obama']
+subject_list = ['obama']
 n_tweets = 10
 h=historico(subject_list,n_tweets)
 h.roda()

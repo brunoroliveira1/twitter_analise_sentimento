@@ -60,11 +60,12 @@ def criar():
     
     l = streaming.luisa(tweet_count,n_tweets,lista)
     l.limpa_arq()
-    auth = OAuthHandler(twitter_keys.CONSUMER_KEY, twitter_keys.CONSUMER_SECRET)
-    auth.set_access_token(twitter_keys.ACCESS_TOKEN, twitter_keys.ACCESS_TOKEN_SECRET)
-    stream = Stream(auth, l)
-    stream.filter(track=lista, languages=["en"])
-    stream.disconnect()
+#    auth = OAuthHandler(twitter_keys.CONSUMER_KEY, twitter_keys.CONSUMER_SECRET)
+#    auth.set_access_token(twitter_keys.ACCESS_TOKEN, twitter_keys.ACCESS_TOKEN_SECRET)
+#    stream = Stream(auth, l)
+#    stream.filter(track=lista, languages=["en"])
+#    stream.disconnect()
+    l.roda()
         
     
     # Recupera o arquivo JSON com os tweets rastreados
