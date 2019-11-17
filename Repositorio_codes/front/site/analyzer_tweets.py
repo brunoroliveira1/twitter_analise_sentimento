@@ -21,11 +21,11 @@ nltk.download('punkt')
 pd.options.display.max_colwidth = 1000000
 
 # streaming or historic
-data = 'streaming'
+data = 'historic'
 
 if data == 'streaming':
     # Recupera as palavras-chave para imprimir na tela
-    with open('tracklist.json', 'r') as tl:
+    with open('tracklist.json', 'r',encoding="utf-8") as tl:
         tracklist = eval(tl.readline())
 
     print('\nLista de palavras-chave rastreadas:')
@@ -35,7 +35,7 @@ if data == 'streaming':
     tweets_data_path = 'tweets.json'
     tweets_data = []
 
-    tweets_file = open(tweets_data_path, 'r')
+    tweets_file = open(tweets_data_path, 'r',encoding="utf-8")
     for line in tweets_file:
         try:
             tweet = json.loads(line)
@@ -51,25 +51,29 @@ if data == 'streaming':
     tweets['Timestamp'] = list(map(lambda tweet: tweet['created_at'], tweets_data))
 else:
     # Recupera as palavras-chave para imprimir na tela
-    with open('subject_list.json', 'r') as tl:
+    with open('subject_list.json', 'r',encoding="utf-8") as tl:
         subject_list = eval(tl.readline())
 
     print('\nLista de palavras-chave rastreadas:')
     print(subject_list)
 
     # Cria um DataFrame com alguns campos importantes do JSON
-    tweets = pd.read_csv('historic.csv', header=None, names=['Timestamp', 'Text'])
+    tweets = pd.read_csv('historic.csv', header=None, names=['Timestamp', 'Text'],encoding = "ISO-8859-1")
 
 print('\nTweets Dataframe')
 print(tweets)
 
 # Início do processo de limpeza dos tweets
 # Passo 1: Utilizando a biblioteca "Preprocessor"
-clean_tweets1 = []
-for tweet in tweets['Text']:
-    clean = p.clean(tweet)
-    clean_tweets1.append(clean)
+#clean_tweets1 = []
+#for tweet in tweets['Text']:
+#    clean = p.clean(tweet)
+#    clean_tweets1.append(clean)
+#    
 
+ready_tweets = []
+for i in tweets['Text']:
+    ready_tweets.append(i)
 # Passo 2: Utilizando a biblioteca "NLTK" para processamento de linguagem natural
 # Lista de emoticons a ser retirados dos tweets
 emoji_pattern = re.compile("["
@@ -123,9 +127,10 @@ def clean_tweets(tweet):
     return ' '.join(filtered_tweet)
 
 # Gerando uma lista com todos os tweets já limpos
-ready_tweets = []
-for i in range(len(clean_tweets1)):
-    ready_tweets.append(clean_tweets(clean_tweets1[i]))
+#ready_tweets =[]
+##ready_tweets = clean_tweets(tweets['Text'])
+#for i in range(len(clean_tweets1)):
+#    ready_tweets.append(clean_tweets(clean_tweets1[i]))
 
 # Inserindo os tweets limpos em um campo no dataframe
 tweets['ready_tweets'] = ready_tweets

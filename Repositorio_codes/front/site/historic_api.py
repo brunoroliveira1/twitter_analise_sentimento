@@ -19,7 +19,7 @@ class historico(object):
         api = tweepy.API(auth, wait_on_rate_limit=True)
         
         # Criando um arquivo para inserir os tweets
-        csvFile = open('historic.csv', 'a')
+        csvFile = open('historic.csv', 'a',encoding="utf-8")
         
         # Usando um csv Writer
         csvWriter = csv.writer(csvFile)
