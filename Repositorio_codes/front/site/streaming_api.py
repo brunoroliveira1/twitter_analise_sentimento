@@ -71,13 +71,13 @@ class Tempo_real(StreamListener):
 
 #
 #
-tweet_count = 0
-n_tweets = 10
-lista = ['obama']
-
-l = Tempo_real(tweet_count,n_tweets,lista)
-l.limpa_arq()
-auth = OAuthHandler(twitter_keys.CONSUMER_KEY, twitter_keys.CONSUMER_SECRET)
-auth.set_access_token(twitter_keys.ACCESS_TOKEN, twitter_keys.ACCESS_TOKEN_SECRET)
-stream = Stream(auth, l)
-stream.filter(track=lista, languages=["en"])
+#tweet_count = 0
+#n_tweets = 10
+#lista = ['obama']
+#
+#l = Tempo_real(tweet_count,n_tweets,lista)
+#l.limpa_arq()
+#auth = OAuthHandler(twitter_keys.CONSUMER_KEY, twitter_keys.CONSUMER_SECRET)
+#auth.set_access_token(twitter_keys.ACCESS_TOKEN, twitter_keys.ACCESS_TOKEN_SECRET)
+#stream = Stream(auth, l)
+#stream.filter(track=lista, languages=["en"])

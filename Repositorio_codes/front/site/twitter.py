@@ -57,38 +57,44 @@ def criar():
     
     tweet_count = 0
     n_tweets = int(request.form['qtd'])
+    tipo = (request.form['tipo'])
     
-    l = streaming.Tempo_real(tweet_count,n_tweets,lista)
-    l.limpa_arq()
-    auth = OAuthHandler(twitter_keys.CONSUMER_KEY, twitter_keys.CONSUMER_SECRET)
-    auth.set_access_token(twitter_keys.ACCESS_TOKEN, twitter_keys.ACCESS_TOKEN_SECRET)
-    stream = Stream(auth, l)
-    stream.filter(track=lista, languages=["en"])
-    stream.disconnect()
-  
+    if tipo == "Stream":
+    
+        l = streaming.Tempo_real(tweet_count,n_tweets,lista)
+        l.limpa_arq()
+        auth = OAuthHandler(twitter_keys.CONSUMER_KEY, twitter_keys.CONSUMER_SECRET)
+        auth.set_access_token(twitter_keys.ACCESS_TOKEN, twitter_keys.ACCESS_TOKEN_SECRET)
+        stream = Stream(auth, l)
+        stream.filter(track=lista, languages=["en"])
+        stream.disconnect()
         
+    else:
+        
+        print("oi")
+       
     
-    # Recupera o arquivo JSON com os tweets rastreados
-    tweets_data_path = 'tweets.json'
-    tweets_data = []
-
-    tweets_file = open(tweets_data_path, 'r')
-    for line in tweets_file:
-        try:
-            tweet = json.loads(line)
-            tweets_data.append(tweet)
-        except:
-            continue
-
-    # Cria um DataFrame com alguns campos importantes do JSON
-    tweets = pd.DataFrame()
-    tweets['Username'] = list(map(lambda tweet: tweet['user']['screen_name'], tweets_data))
-    tweets['Text'] = list(map(lambda tweet: tweet['text'], tweets_data))
-    tweets['Location'] = list(map(lambda tweet: tweet['user']['location'], tweets_data))
-    tweets['Timestamp'] = list(map(lambda tweet: tweet['created_at'], tweets_data))
+#    # Recupera o arquivo JSON com os tweets rastreados
+#    tweets_data_path = 'tweets.json'
+#    tweets_data = []
+#
+#    tweets_file = open(tweets_data_path, 'r')
+#    for line in tweets_file:
+#        try:
+#            tweet = json.loads(line)
+#            tweets_data.append(tweet)
+#        except:
+#            continue
+#
+#    # Cria um DataFrame com alguns campos importantes do JSON
+#    tweets = pd.DataFrame()
+#    tweets['Username'] = list(map(lambda tweet: tweet['user']['screen_name'], tweets_data))
+#    tweets['Text'] = list(map(lambda tweet: tweet['text'], tweets_data))
+#    tweets['Location'] = list(map(lambda tweet: tweet['user']['location'], tweets_data))
+#    tweets['Timestamp'] = list(map(lambda tweet: tweet['created_at'], tweets_data))
     
     
-    return render_template('simple.html',  tables=[tweets.to_html(classes='data')], titles=tweets.columns.values)
+#    return render_template('simple.html',  tables=[tweets.to_html(classes='data')], titles=tweets.columns.values)
 
 
 @app.route('/pesquisa')
