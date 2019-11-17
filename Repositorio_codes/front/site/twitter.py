@@ -70,10 +70,11 @@ def criar():
         stream.filter(track=lista, languages=["en"])
         stream.disconnect()
         
-        anal
+        a = anal.analisar(tipo)
+        a.rodar()
         
     else:
-        h=historico(lista,n_tweets)
+        h=historico.historico(lista,n_tweets)
         h.roda()
 
        

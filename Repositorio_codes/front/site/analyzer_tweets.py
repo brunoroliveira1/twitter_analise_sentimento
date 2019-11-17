@@ -188,13 +188,13 @@ class analisar(object):
         print(tweets[['ready_tweets', 'polarity', 'subjectivity', 'vaderSentiment']])
         
         # Plotando notas de sentimento usando Polaridade e vaderSentiment
-        plt.subplot(2, 1, 1)
-        plt.plot(tweets['Timestamp'], tweets['polarity'])
-        plt.title('Sentiment Analysis with TextBlob')
-        plt.subplot(2, 1, 2)
-        plt.plot(tweets['Timestamp'], vaderSentiment)
-        plt.title('Sentiment Intensivity Analyzer with vaderSentiment')
-        plt.show()
+#        plt.subplot(2, 1, 1)
+#        plt.plot(tweets['Timestamp'], tweets['polarity'])
+#        plt.title('Sentiment Analysis with TextBlob')
+#        plt.subplot(2, 1, 2)
+#        plt.plot(tweets['Timestamp'], vaderSentiment)
+#        plt.title('Sentiment Intensivity Analyzer with vaderSentiment')
+#        plt.show()
         
         # Contando as palavras
         def words_counter(list_words):
@@ -234,6 +234,7 @@ class analisar(object):
         plt.show()
         
         
+        return polarity_mean,subjectivity_mean,positive_tweets.head(num_tweets_classify),negative_tweets.head(num_tweets_classify),tweets[['ready_tweets', 'polarity', 'subjectivity', 'vaderSentiment']]
         
         
         
@@ -249,10 +250,9 @@ class analisar(object):
         
         
         
-        
-        
-        
-        
+data = 'historic'        
+a = analisar(data)        
+a.rodar()        
         
         
         
