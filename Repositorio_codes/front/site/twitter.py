@@ -63,10 +63,10 @@ def criar():
         stream.filter(track=lista, languages=["en"])
         stream.disconnect()
         
-#        a = anal.analisar(tipo)
-#        a.rodar()
+        a = anal.analisar(tipo)
+        a.rodar()
 #        
-#        return render_template('imagem.html')
+        return render_template('imagem.html')
         
     else:
         h=historico.historico(lista,n_tweets)
