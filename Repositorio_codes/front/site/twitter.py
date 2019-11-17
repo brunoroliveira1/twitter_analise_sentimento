@@ -58,7 +58,7 @@ def criar():
     tweet_count = 0
     n_tweets = int(request.form['qtd'])
     
-    l = streaming.luisa(tweet_count,n_tweets,lista)
+    l = streaming.Tempo_real(tweet_count,n_tweets,lista)
     l.limpa_arq()
 #    auth = OAuthHandler(twitter_keys.CONSUMER_KEY, twitter_keys.CONSUMER_SECRET)
 #    auth.set_access_token(twitter_keys.ACCESS_TOKEN, twitter_keys.ACCESS_TOKEN_SECRET)

@@ -26,7 +26,7 @@ import pandas as pd
 #n_tweets = 1
 
 # Classe que irá possibilitar o streaming de tweets
-class luisa(StreamListener):
+class Tempo_real(StreamListener):
       
     def __init__(self,tweet_count,n_tweets,tracklist):
         self.tweet_count = tweet_count
