@@ -36,8 +36,8 @@ class historico(object):
             csvWriter.writerow([tweet.created_at, tweet.text])
 
 
-subject_list = ['obama']
-n_tweets = 10
-h=historico(subject_list,n_tweets)
-h.roda()
+#subject_list = ['obama']
+#n_tweets = 10
+#h=historico(subject_list,n_tweets)
+#h.roda()
 

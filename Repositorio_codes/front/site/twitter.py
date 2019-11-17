@@ -10,7 +10,8 @@ import request
 import json
 import pandas as pd
 import numpy as np
-
+import analyzer_tweets as anal
+import historic_api as historico
 import matplotlib.pyplot as plt
 
 import preprocessor as p
@@ -69,9 +70,13 @@ def criar():
         stream.filter(track=lista, languages=["en"])
         stream.disconnect()
         
-    else:
+        anal
         
-        print("oi")
+    else:
+        h=historico(lista,n_tweets)
+        h.roda()
+
+       
        
     
 #    # Recupera o arquivo JSON com os tweets rastreados
