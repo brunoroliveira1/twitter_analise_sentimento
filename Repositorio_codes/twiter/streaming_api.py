@@ -64,7 +64,7 @@ class luisa(StreamListener):
             stream.disconnect()
 
     def on_error(self, status):
-#        print(status)
+        print(status)
 
 
 

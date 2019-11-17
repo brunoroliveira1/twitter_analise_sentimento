@@ -2,7 +2,6 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
 import os
-
 import twitter_keys
 
 #
@@ -54,15 +53,29 @@ class luisa(StreamListener):
         
         if self.tweet_count < self.n_tweets:
             
-#            print(data)
+            print(data)
             with open('tweets.json', 'a') as f:
                 f.write(data)
             self.tweet_count += 1
             
             return True
         else:
-            stream.disconnect()
+            return False
+#            stream.disconnect()
 
     def on_error(self, status):
         print(status)
 
+
+#
+#
+#tweet_count = 0
+#n_tweets = 10
+#lista = ['obama']
+#
+#l = luisa(tweet_count,n_tweets,lista)
+#l.limpa_arq()
+#auth = OAuthHandler(twitter_keys.CONSUMER_KEY, twitter_keys.CONSUMER_SECRET)
+#auth.set_access_token(twitter_keys.ACCESS_TOKEN, twitter_keys.ACCESS_TOKEN_SECRET)
+#stream = Stream(auth, l)
+#stream.filter(track=lista, languages=["en"])
