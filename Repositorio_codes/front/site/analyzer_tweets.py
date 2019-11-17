@@ -187,15 +187,15 @@ class analisar(object):
         # Printando um dataframe com os tweets limpos e suas notas
         print(tweets[['ready_tweets', 'polarity', 'subjectivity', 'vaderSentiment']])
         
-        # Plotando notas de sentimento usando Polaridade e vaderSentiment
-#        plt.subplot(2, 1, 1)
-#        plt.plot(tweets['Timestamp'], tweets['polarity'])
-#        plt.title('Sentiment Analysis with TextBlob')
-#        plt.subplot(2, 1, 2)
-#        plt.plot(tweets['Timestamp'], vaderSentiment)
-#        plt.title('Sentiment Intensivity Analyzer with vaderSentiment')
+#         Plotando notas de sentimento usando Polaridade e vaderSentiment
+        plt.subplot(2, 1, 1)
+        plt.plot(tweets['Timestamp'], tweets['polarity'])
+        plt.title('Sentiment Analysis with TextBlob')
+        plt.subplot(2, 1, 2)
+        plt.plot(tweets['Timestamp'], vaderSentiment)
+        plt.title('Sentiment Intensivity Analyzer with vaderSentiment')
 #        plt.show()
-        
+        plt.savefig('foo.png')
         # Contando as palavras
         def words_counter(list_words):
             words = []
@@ -230,15 +230,12 @@ class analisar(object):
         plt.subplot(3, 1, 3)
         plt.bar(words_count_positive.index[0:10], words_count_positive['values'].values[0:10])
         plt.title('Main Words in Positive Tweets')
-        plt.tight_layout()
-        plt.show()
+#        plt.tight_layout()
+#        plt.show()
+        plt.savefig('vai.png')
         
         
-        return polarity_mean,subjectivity_mean,positive_tweets.head(num_tweets_classify),negative_tweets.head(num_tweets_classify),tweets[['ready_tweets', 'polarity', 'subjectivity', 'vaderSentiment']]
-        
-        
-        
-        
+#        return polarity_mean,subjectivity_mean,positive_tweets.head(num_tweets_classify),negative_tweets.head(num_tweets_classify),tweets[['ready_tweets', 'polarity', 'subjectivity', 'vaderSentiment']]
         
         
         
@@ -250,10 +247,14 @@ class analisar(object):
         
         
         
-data = 'historic'        
-a = analisar(data)        
-a.rodar()        
         
+        
+        
+        
+#data = 'historic'        
+#a = analisar(data)        
+#a.rodar()        
+#        
         
         
         

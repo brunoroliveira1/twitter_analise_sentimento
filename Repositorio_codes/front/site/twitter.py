@@ -23,16 +23,9 @@ import json
 import string
 from collections import Counter
 
-import nltk
-nltk.download('stopwords')
-from nltk.corpus import stopwords
-set(stopwords.words('english'))
-from nltk.tokenize import word_tokenize
-nltk.download('punkt')
-
 global stream
 
-from flask import (Flask, request, session, g, redirect, url_for, abort, render_template, flash, Response,jsonify)
+from flask import (Flask, request, session, g, redirect, url_for, abort, render_template, flash, Response,jsonify,send_file)
 
 app = Flask(__name__)
 app.secret_key = 'icc'
@@ -70,13 +63,16 @@ def criar():
         stream.filter(track=lista, languages=["en"])
         stream.disconnect()
         
-        a = anal.analisar(tipo)
-        a.rodar()
+#        a = anal.analisar(tipo)
+#        a.rodar()
+#        
+#        return render_template('imagem.html')
         
     else:
         h=historico.historico(lista,n_tweets)
         h.roda()
-
+#        return send_file('foo.png', mimetype='image/gif')
+        return render_template('imagem.html')
        
        
     
