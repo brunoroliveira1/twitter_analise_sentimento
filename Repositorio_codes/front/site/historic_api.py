@@ -35,6 +35,11 @@ class historico(object):
             print (tweet.created_at, tweet.text)
             csvWriter.writerow([tweet.created_at, tweet.text])
 
+    def limpa_arq(self):
+        try:
+            os.remove("historic.csv")
+        except:
+            pass
 
 #subject_list = ['obama']
 #n_tweets = 10

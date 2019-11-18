@@ -56,11 +56,11 @@ class analisar(object):
             tweets['Timestamp'] = list(map(lambda tweet: tweet['created_at'], tweets_data))
         else:
             # Recupera as palavras-chave para imprimir na tela
-            with open('subject_list.json', 'r',encoding="utf-8") as tl:
-                subject_list = eval(tl.readline())
+            #with open('subject_list.json', 'r',encoding="latin-1") as tl:
+            #    subject_list = eval(tl.readline())
         
-            print('\nLista de palavras-chave rastreadas:')
-            print(subject_list)
+            #print('\nLista de palavras-chave rastreadas:')
+            #print(subject_list)
         
             # Cria um DataFrame com alguns campos importantes do JSON
             tweets = pd.read_csv('historic.csv', header=None, names=['Timestamp', 'Text'],encoding = "ISO-8859-1")
@@ -139,6 +139,9 @@ class analisar(object):
         
         # Inserindo os tweets limpos em um campo no dataframe
         tweets['ready_tweets'] = ready_tweets
+
+        limpos_df=tweets['ready_tweets']
+        limpos_df.to_csv("twitter_limpo.csv")
         
         # Iniciando a análise de sentimento
         sentiment = []
@@ -195,7 +198,7 @@ class analisar(object):
         plt.plot(tweets['Timestamp'], vaderSentiment)
         plt.title('Sentiment Intensivity Analyzer with vaderSentiment')
 #        plt.show()
-        plt.savefig('foo.png')
+        plt.savefig('static/foo.png')
         # Contando as palavras
         def words_counter(list_words):
             words = []
@@ -232,7 +235,7 @@ class analisar(object):
         plt.title('Main Words in Positive Tweets')
 #        plt.tight_layout()
 #        plt.show()
-        plt.savefig('vai.png')
+        plt.savefig('static/vai.png')
         
         
 #        return polarity_mean,subjectivity_mean,positive_tweets.head(num_tweets_classify),negative_tweets.head(num_tweets_classify),tweets[['ready_tweets', 'polarity', 'subjectivity', 'vaderSentiment']]

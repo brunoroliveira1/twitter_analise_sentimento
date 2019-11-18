@@ -23,6 +23,7 @@ import json
 import string
 from collections import Counter
 
+from Repositorio_codes.front.site.analyzer_tweets import analisar
 from Repositorio_codes.front.site.nuvem_palavras import nuvem
 
 global stream
@@ -30,6 +31,7 @@ global stream
 from flask import (Flask, request, session, g, redirect, url_for, abort, render_template, flash, Response,jsonify,send_file)
 
 app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.secret_key = 'icc'
 
 
@@ -39,6 +41,9 @@ class Busca:
 
 
 lista = []
+
+
+
 
 
 @app.route('/')
@@ -73,12 +78,21 @@ def criar():
         return render_template('imagem.html')
         
     else:
-        h=historico.historico(lista,n_tweets)
+        # processa o historico
+        h = historico.historico(lista,n_tweets)
+        h.limpa_arq()
         h.roda()
+
+        # analisa o historico
+        a = analisar(tipo)
+        a.rodar()
+
+        # gera a nuvem de palavras suja
         n=nuvem('historico')
         n.geranuvem()
-#        return send_file('foo.png', mimetype='image/gif')
-        return render_template('dadosGerais.html', titulo='Busca no Twitter', procuras=lista)
+
+
+        return render_template('dadosGerais.html', titulo='Nuvem de Palavras')
        
        
     
@@ -116,7 +130,12 @@ def estatistica():
 
 @app.route('/dadosGerais')
 def dadosgerais():
-    return render_template('dadosGerais.html', titulo='Dados Gerais')
+    return render_template('dadosGerais.html', titulo='Nuvem de Palavras ')
+
+
+@app.route('/Sentimentos')
+def sentimentos():
+    return render_template('Sentimentos.html', titulo='Analise de Sentimentos ')
 
 
 app.run(debug=True)
