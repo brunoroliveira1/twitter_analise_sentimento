@@ -123,9 +123,9 @@ def criar():
 def pesquisa():
     return render_template('lista.html', titulo='Busca no Twitter', procuras=lista)
 
-@app.route('/Estatistica')
-def estatistica():
-    return render_template('Estatistica.html', titulo='Estatisticas')
+@app.route('/lista')
+def lista():
+    return render_template('lista.html', titulo='Palavras Analise de Sentimentos ')
 
 
 @app.route('/dadosGerais')
