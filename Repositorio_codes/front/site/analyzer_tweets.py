@@ -173,11 +173,18 @@ class analisar(object):
         positive_tweets = tweets.sort_values('polarity', ascending=False)
         print('\nOs cinco tweets com sentimento mais positivo')
         print(positive_tweets.head(num_tweets_classify))
-        
+
+        df_positivos=positive_tweets.head(num_tweets_classify)
+        df_positivos.to_csv("positivos.csv")
+
+
         # Tweets com sentimento mais negativo
         negative_tweets = tweets.sort_values('polarity')
         print('Os cinco tweets com sentimento mais negativo')
         print(negative_tweets.head(num_tweets_classify))
+
+        df_negativos=negative_tweets.head(num_tweets_classify)
+        df_negativos.to_csv("negativos.csv")
         
         vaderSentiment = []
         analyzer = SentimentIntensityAnalyzer()

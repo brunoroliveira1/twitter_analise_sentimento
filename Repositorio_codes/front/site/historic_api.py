@@ -38,6 +38,9 @@ class historico(object):
     def limpa_arq(self):
         try:
             os.remove("historic.csv")
+            os.remove("twitter_limpo.csv")
+           # os.remove("positivos.csv")
+           # os.remove("negativos.csv")
         except:
             pass
 
