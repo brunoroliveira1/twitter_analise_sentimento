@@ -23,6 +23,8 @@ import json
 import string
 from collections import Counter
 
+from Repositorio_codes.front.site.nuvem_palavras import nuvem
+
 global stream
 
 from flask import (Flask, request, session, g, redirect, url_for, abort, render_template, flash, Response,jsonify,send_file)
@@ -48,11 +50,13 @@ def novo():
 def criar():
     lista = request.form['busca']
 
-    
     tweet_count = 0
     n_tweets = int(request.form['qtd'])
-    tipo = (request.form['tipo'])
-    
+    #tipo = (request.form['tipo'])
+
+
+    tipo = "Historico"
+
     if tipo == "Stream":
     
         l = streaming.Tempo_real(tweet_count,n_tweets,lista)
@@ -71,8 +75,10 @@ def criar():
     else:
         h=historico.historico(lista,n_tweets)
         h.roda()
+        n=nuvem('historico')
+        n.geranuvem()
 #        return send_file('foo.png', mimetype='image/gif')
-        return render_template('imagem.html')
+        return render_template('dadosGerais.html', titulo='Busca no Twitter', procuras=lista)
        
        
     
@@ -106,6 +112,11 @@ def pesquisa():
 @app.route('/Estatistica')
 def estatistica():
     return render_template('Estatistica.html', titulo='Estatisticas')
+
+
+@app.route('/dadosGerais')
+def dadosgerais():
+    return render_template('dadosGerais.html', titulo='Dados Gerais')
 
 
 app.run(debug=True)
